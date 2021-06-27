@@ -1,0 +1,201 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+$base-size: 16px;
+
+@mixin media-query($key, $breakpoint: $grid-breakpoints) {
+  @media (min-width: map-get($breakpoint, $key)) {
+    @content;
+  }
+}
+
+@function rem($size, $context: $base-size) {
+    @return $size / $base-size * 1rem;
+}
+
+.common-layout {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.line {
+    border-bottom: 6px solid #e4a416;
+    margin: rem(30px) auto;
+
+    @for $i from 1 through 10 {
+        &.w-#{$i * 10} {
+            width: $i * 10%;
+        }
+    }
+}
+
+.App {
+    width: 100%;
+    min-height: 100vh;
+    
+
+    .header {
+        height: rem(500px);
+        background-color: #E6A813;
+
+        &__content {
+            margin: rem(50px) auto;
+        }
+
+        .left-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-col {
+
+            @include media-query (md) {
+                padding: 0 rem(150px) 0 0;
+
+            }
+        }
+
+        &__img {
+            border-radius: 50%;
+            width: rem(100px);
+            height: rem(100px);
+        }
+
+        &__title {
+            font-size: 60px;
+            font-weight: 700;
+            color: #000;
+        }
+    }
+
+    .airdrop {
+        padding: rem(15px) 0 rem(80px) 0;
+        &__lead {
+            padding: 0 rem(165px);
+        }
+
+        &__info {
+            &-box {
+                border-radius: 10px;
+                background: linear-gradient(#e4a416, #e4a416 0%, #e8d09b 100%);
+                width: rem(250px);
+                height: rem(220px);
+
+                margin: 0 auto;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                p {
+                    color: white;
+                }
+
+                &__title {
+                    font-size: rem(20px);
+                    font-weight: 700
+                }
+
+                &__data {
+                    font-size: rem(30px);
+                    font-weight: 700
+                }
+
+                &__img {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+    .referral {
+        background-color: #F3EDCB;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: rem(170px) 0;
+
+        &__content {
+            padding: rem(35px) rem(50px);
+            background-color: #E8D09B;
+            border-radius: 23px;
+            width: 100%;
+            margin: 0 auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__left-col {
+                
+
+                .level-block {
+                    margin: 15px 0;
+                    padding: rem(5px) rem(30px);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+    
+                    background-color: #EEF4FF;
+                    width: 100%;
+                    height: rem(65px);
+                    border-radius: 20px;
+
+                    P {
+                        margin-bottom: 0;
+                    }
+                }
+
+                @include media-query(xl) {
+                    width: rem(900px);
+                }
+            }
+
+            &__right-col {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                .package {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+    
+                    flex-direction: column;
+
+                    background-color: #FFF;
+                    border-radius: 20px;
+
+                    width: 85%;
+
+                    padding: rem(50px) 0;
+                }
+            }
+
+            
+        }
+    }
+}
